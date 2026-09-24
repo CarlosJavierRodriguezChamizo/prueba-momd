@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ElectroFix | Venta y reparación de electrodomésticos</title>
+    <meta
+        name="description"
+        content="Venta, instalación y reparación de electrodomésticos. Servicio técnico para lavadoras, frigoríficos, lavavajillas, hornos y más."
+    >
+
+    <style>
+        :root {
+            --primary: #1565c0;
+            --primary-dark: #0d47a1;
+            --secondary: #00a884;
+            --accent: #ffb300;
+
+            --dark: #172033;
+            --text: #4b5563;
+            --light: #f5f7fb;
+            --white: #ffffff;
+
+            --border: #e5e7eb;
+            --danger: #d93025;
+
+            --radius: 18px;
+            --shadow: 0 15px 40px rgba(23, 32, 51, 0.1);
+
+            --container: 1180px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(90%, var(--container));
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: var(--primary);
+            color: white;
+            font-size: 22px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .header-phone {
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+        }
+
+        .menu-button {
+            display: none;
+            border: 0;
+            background: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(21, 101, 192, 0.16),
+                    transparent 30%
+                ),
+                linear-gradient(135deg, #f8fbff, #eef5ff);
+
+            padding: 90px 0 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e4f0ff;
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            line-height: 1.02;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--text);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+
+            padding: 14px 22px;
+            border-radius: 10px;
+            border: 0;
+
+            font-weight: 700;
+            cursor: pointer;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(21, 101, 192, 0.25);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            color: var(--text);
+            font-size: 0.92rem;
+        }
+
+        .hero-features span::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: 900;
+            margin-right: 7px;
+        }
+
+        .hero-card {
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 28px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .appliance-scene {
+            min-height: 420px;
+            border-radius: 22px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(21, 101, 192, 0.07),
+                    rgba(0, 168, 132, 0.08)
+                );
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .washer {
+            width: 220px;
+            height: 290px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 25px 50px rgba(20, 40, 80, 0.18);
+            padding: 20px;
+            position: relative;
+        }
+
+        .washer-top {
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .washer-screen {
+            width: 65px;
+            height: 18px;
+            border-radius: 4px;
+            background: var(--dark);
+        }
+
+        .washer-button {
+            width: 24px;
+            height: 24px;
+            border: 5px solid #d7dce3;
+            border-radius: 50%;
+        }
+
+        .washer-door {
+            position: absolute;
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            border: 16px solid #dde2e8;
+            background: radial-gradient(
+                circle at 30% 30%,
+                #d9ecf9,
+                #587b9e
+            );
+            left: 50%;
+            bottom: 35px;
+            transform: translateX(-50%);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 13px 16px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .floating-card.one {
+            top: 45px;
+            right: 20px;
+        }
+
+        .floating-card.two {
+            left: 15px;
+            bottom: 50px;
+        }
+
+        /* GENERIC SECTIONS */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-header small {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin: 12px 0 16px;
+        }
+
+        .section-header p {
+            color: var(--text);
+        }
+
+        /* SERVICES */
+
+        .services {
+            background: white;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: 0.25s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #edf5ff;
+            font-size: 28px;
+            margin-bottom: 22px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        .service-card a {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* SHOP */
+
+        .shop {
+            background: var(--light);
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto 45px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 1px solid var(--border);
+            padding: 18px 55px 18px 20px;
+            border-radius: 14px;
+            background: white;
+            outline: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-box span {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: 0.25s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-image {
+            height: 210px;
+            background: linear-gradient(145deg, #eef2f7, #dde5ef);
+            display: grid;
+            place-items: center;
+            font-size: 90px;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .category {
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .product h3 {
+            font-size: 1.1rem;
+            margin: 8px 0;
+        }
+
+        .product p {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+        }
+
+        .price {
+            font-weight: 900;
+            font-size: 1.25rem;
+        }
+
+        .product button {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 9px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+        }
+
+        /* WHY US */
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .why-visual {
+            min-height: 460px;
+            border-radius: 25px;
+            background:
+                linear-gradient(
+                    rgba(13, 71, 161, 0.9),
+                    rgba(13, 71, 161, 0.9)
+                ),
+                linear-gradient(135deg, #286ab1, #0d47a1);
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .why-visual strong {
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .why-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+        }
+
+        .why-content > p {
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+
+        .benefit {
+            display: grid;
+            grid-template-columns: 45px 1fr;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .benefit-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #edf5ff;
+            display: grid;
+            place-items: center;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .benefit p {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        /* REVIEWS */
+
+        .reviews {
+            background: var(--light);
+        }
+
+        .review {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+        }
+
+        .stars {
+            color: var(--accent);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            color: var(--text);
+            margin-bottom: 22px;
+        }
+
+        .review-user {
+            font-weight: 800;
+        }
+
+        /* FORM */
+
+        .contact {
+            background: var(--dark);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .contact-info > p {
+            color: #b9c3d4;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            margin-bottom: 15px;
+            color: #e5e7eb;
+        }
+
+        .contact-form {
+            background: white;
+            color: var(--dark);
+            padding: 35px;
+            border-radius: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 7px;
+            font-size: 0.9rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border-radius: 9px;
+            border: 1px solid #d9dfe7;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .error {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .invalid {
+            border-color: var(--danger) !important;
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #e8f7ef;
+            color: #147a48;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #101726;
+            color: #aeb8c8;
+            padding: 35px 0;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            align-items: center;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 950px) {
+            .hero-grid,
+            .why-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 25px;
+
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+        }
+
+        @media (max-width: 620px) {
+            section {
+                padding: 65px 0;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero-card {
+                padding: 15px;
+            }
+
+            .appliance-scene {
+                min-height: 350px;
+            }
+
+            .card-grid,
+            .products-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .footer-grid {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+
+        <a href="#" class="logo">
+            <div class="logo-icon">⚡</div>
+            Electro<span>Fix</span>
+        </a>
+
+        <nav id="mainNav">
+            <a href="#servicios">Reparación</a>
+            <a href="#tienda">Electrodomésticos</a>
+            <a href="#nosotros">Por qué elegirnos</a>
+            <a href="#contacto">Contacto</a>
+            <a class="header-phone" href="tel:+34900123456">
+                ☎ 900 123 456
+            </a>
+        </nav>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="container hero-grid">
+
+            <div>
+
+                <div class="hero-badge">
+                    ● Servicio técnico rápido
+                </div>
+
+                <h1>
+                    Tu electrodoméstico
+                    <span>funcionando otra vez.</span>
+                </h1>
+
+                <p>
+                    Reparamos, instalamos y vendemos electrodomésticos
+                    para tu hogar. Técnicos especializados, presupuesto
+                    previo y atención rápida.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#contacto" class="btn btn-primary">
+                        Solicitar reparación →
+                    </a>
+
+                    <a href="#tienda" class="btn btn-secondary">
+                        Ver electrodomésticos
+                    </a>
+
+                </div>
+
+                <div class="hero-features">
+                    <span>Presupuesto previo</span>
+                    <span>Garantía en reparaciones</span>
+                    <span>Servicio a domicilio</span>
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="appliance-scene">
+
+                    <div class="washer">
+
+                        <div class="washer-top">
+                            <div class="washer-screen"></div>
+                            <div class="washer-button"></div>
+                        </div>
+
+                        <div class="washer-door"></div>
+
+                    </div>
+
+                    <div class="floating-card one">
+                        🔧 Reparación rápida
+                    </div>
+
+                    <div class="floating-card two">
+                        ⭐ 4,9/5 clientes satisfechos
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section class="services" id="servicios">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <small>Servicio técnico</small>
+
+                <h2>
+                    Reparamos los electrodomésticos de tu hogar
+                </h2>
+
+                <p>
+                    Diagnóstico, reparación y mantenimiento de las
+                    principales categorías de electrodomésticos.
+                </p>
+
+            </div>
+
+
+            <div class="card-grid">
+
+                <article class="service-card">
+
+                    <div class="service-icon">🧺</div>
+
+                    <h3>Lavadoras</h3>
+
+                    <p>
+                        Averías de centrifugado, desagüe, fugas,
+                        ruido, motores y electrónica.
+                    </p>
+
+                    <a href="#contacto">Solicitar reparación →</a>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">❄️</div>
+
+                    <h3>Frigoríficos</h3>
+
+                    <p>
+                        Problemas de temperatura, congelación,
+                        termostatos, compresores y fugas.
+                    </p>
+
+                    <a href="#contacto">Solicitar reparación →</a>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">🍽️</div>
+
+                    <h3>Lavavajillas</h3>
+
+                    <p>
+                        Problemas de carga de agua, drenaje,
+                        calentamiento y ciclos de lavado.
+                    </p>
+
+                    <a href="#contacto">Solicitar reparación →</a>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">🔥</div>
+
+                    <h3>Hornos</h3>
+
+                    <p>
+                        Reparación de resistencias, termostatos,
+                        puertas y sistemas electrónicos.
+                    </p>
+
+                    <a href="#contacto">Solicitar reparación →</a>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">♨️</div>
+
+                    <h3>Secadoras</h3>
+
+                    <p>
+                        Problemas de calentamiento, tambor,
+                        sensores, filtros y evacuación.
+                    </p>
+
+                    <a href="#contacto">Solicitar reparación →</a>
+
+                </article>
+
+
+                <article class="service-card">
+
+                    <div class="service-icon">🛠️</div>
+
+                    <h3>Instalación</h3>
+
+                    <p>
+                        Instalamos tu nuevo electrodoméstico
+                        y retiramos el antiguo si lo necesitas.
+                    </p>
+
+                    <a href="#contacto">Solicitar instalación →</a>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SHOP -->
+
+    <section class="shop" id="tienda">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <small>Tienda</small>
+
+                <h2>
+                    Encuentra tu próximo electrodoméstico
+                </h2>
+
+                <p>
+                    Busca entre nuestras principales categorías
+                    de electrodomésticos.
+                </p>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <input
+                    type="search"
+                    id="productSearch"
+                    placeholder="Buscar lavadora, frigorífico, horno..."
+                    aria-label="Buscar electrodomésticos"
+                >
+
+                <span>⌕</span>
+
+            </div>
+
+
+            <div class="products-grid" id="productsGrid">
+
+                <article
+                    class="product"
+                    data-name="lavadora carga frontal"
+                >
+
+                    <div class="product-image">🧺</div>
+
+                    <div class="product-content">
+
+                        <span class="category">Lavadoras</span>
+
+                        <h3>Lavadora EcoWash 9kg</h3>
+
+                        <p>
+                            9 kg · 1.400 rpm · Clase energética A
+                        </p>
+
+                        <div class="price-row">
+
+                            <span class="price">459 €</span>
+
+                            <button aria-label="Comprar">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="product"
+                    data-name="frigorifico combi no frost"
+                >
+
+                    <div class="product-image">❄️</div>
+
+                    <div class="product-content">
+
+                        <span class="category">Frigoríficos</span>
+
+                        <h3>Frigorífico FreshCool</h3>
+
+                        <p>
+                            No Frost · 330 L · Bajo consumo
+                        </p>
+
+                        <div class="price-row">
+
+                            <span class="price">599 €</span>
+
+                            <button aria-label="Comprar">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="product"
+                    data-name="lavavajillas integrable"
+                >
+
+                    <div class="product-image">🍽️</div>
+
+                    <div class="product-content">
+
+                        <span class="category">Lavavajillas</span>
+
+                        <h3>Lavavajillas SilentPro</h3>
+
+                        <p>
+                            14 servicios · 44 dB · 6 programas
+                        </p>
+
+                        <div class="price-row">
+
+                            <span class="price">429 €</span>
+
+                            <button aria-label="Comprar">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="product"
+                    data-name="horno multifuncion pirolitico"
+                >
+
+                    <div class="product-image">🔥</div>
+
+                    <div class="product-content">
+
+                        <span class="category">Hornos</span>
+
+                        <h3>Horno ChefPro</h3>
+
+                        <p>
+                            71 L · Pirólisis · 10 funciones
+                        </p>
+
+                        <div class="price-row">
+
+                            <span class="price">389 €</span>
+
+                            <button aria-label="Comprar">
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY US -->
+
+    <section id="nosotros">
+
+        <div class="container why-grid">
+
+            <div class="why-visual">
+
+                <strong>12+</strong>
+
+                <h3>años reparando electrodomésticos</h3>
+
+                <p>
+                    Experiencia, diagnóstico profesional
+                    y atención cercana.
+                </p>
+
+            </div>
+
+
+            <div class="why-content">
+
+                <h2>
+                    Reparar antes de sustituir
+                </h2>
+
+                <p>
+                    Analizamos la avería y te explicamos las opciones
+                    disponibles antes de realizar cualquier reparación.
+                </p>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-number">01</div>
+
+                    <div>
+                        <h3>Diagnóstico profesional</h3>
+                        <p>
+                            Localizamos el origen de la avería
+                            antes de sustituir componentes.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-number">02</div>
+
+                    <div>
+                        <h3>Presupuesto previo</h3>
+                        <p>
+                            Conoce el coste aproximado antes
+                            de autorizar la reparación.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-number">03</div>
+
+                    <div>
+                        <h3>Servicio a domicilio</h3>
+                        <p>
+                            Nuestros técnicos se desplazan
+                            hasta tu domicilio.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+
+    <section class="reviews">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <small>Opiniones</small>
+
+                <h2>
+                    Lo que dicen nuestros clientes
+                </h2>
+
+            </div>
+
+
+            <div class="card-grid">
+
+                <article class="review">
+
+                    <div class="stars">★★★★★</div>
+
+                    <p>
+                        “La lavadora dejó de centrifugar y consiguieron
+                        repararla el mismo día. Muy buen servicio.”
+                    </p>
+
+                    <div class="review-user">
+                        Laura G.
+                    </div>
+
+                </article>
+
+
+                <article class="review">
+
+                    <div class="stars">★★★★★</div>
+
+                    <p>
+                        “Me explicaron claramente cuál era la avería
+                        y cuánto costaría antes de repararla.”
+                    </p>
+
+                    <div class="review-user">
+                        Javier M.
+                    </div>
+
+                </article>
+
+
+                <article class="review">
+
+                    <div class="stars">★★★★★</div>
+
+                    <p>
+                        “Compramos el frigorífico y también se encargaron
+                        de instalarlo y retirar el antiguo.”
+                    </p>
+
+                    <div class="review-user">
+                        Marta R.
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contacto">
+
+        <div class="container contact-grid">
+
+            <div class="contact-info">
+
+                <h2>
+                    ¿Tu electrodoméstico ha dejado de funcionar?
+                </h2>
+
+                <p>
+                    Cuéntanos qué ocurre y te contactaremos
+                    para valorar la reparación.
+                </p>
+
+                <div class="contact-detail">
+                    ☎ <strong>900 123 456</strong>
+                </div>
+
+                <div class="contact-detail">
+                    ✉ hola@electrofix.es
+                </div>
+
+                <div class="contact-detail">
+                    ⏰ Lunes a viernes · 8:00 – 20:00
+                </div>
+
+            </div>
+
+
+            <form class="contact-form" id="repairForm" novalidate>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">Nombre *</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Tu nombre"
+                        >
+
+                        <div class="error">
+                            Introduce tu nombre.
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">Teléfono *</label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="600 000 000"
+                        >
+
+                        <div class="error">
+                            Introduce un teléfono válido.
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">Email *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="nombre@email.com"
+                        >
+
+                        <div class="error">
+                            Introduce un email válido.
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="appliance">
+                            Electrodoméstico *
+                        </label>
+
+                        <select id="appliance" name="appliance">
+
+                            <option value="">
+                                Selecciona una opción
+                            </option>
+
+                            <option>Lavadora</option>
+                            <option>Frigorífico</option>
+                            <option>Lavavajillas</option>
+                            <option>Horno</option>
+                            <option>Secadora</option>
+                            <option>Otro</option>
+
+                        </select>
+
+                        <div class="error">
+                            Selecciona un electrodoméstico.
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="message">
+                            Cuéntanos qué ocurre
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Describe brevemente la avería..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    type="submit"
+                >
+                    Solicitar reparación
+                </button>
+
+
+                <div class="form-status" id="formStatus">
+                    ✓ Solicitud enviada correctamente.
+                    Nos pondremos en contacto contigo.
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-grid">
+
+        <div>
+            <strong>ElectroFix</strong><br>
+            Venta y reparación de electrodomésticos
+        </div>
+
+        <div>
+            © <span id="currentYear"></span> ElectroFix
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+    /* ----------------------------
+       MOBILE MENU
+    ----------------------------- */
+
+    const menuButton = document.getElementById("menuButton");
+    const mainNav = document.getElementById("mainNav");
+
+    menuButton.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+    });
+
+    document.querySelectorAll("#mainNav a").forEach(link => {
+
+        link.addEventListener("click", () => {
+            mainNav.classList.remove("active");
+        });
+
+    });
+
+
+    /* ----------------------------
+       PRODUCT SEARCH
+    ----------------------------- */
+
+    const productSearch = document.getElementById("productSearch");
+    const products = document.querySelectorAll(".product");
+
+    productSearch.addEventListener("input", function () {
+
+        const searchTerm = this.value
+            .toLowerCase()
+            .trim();
+
+        products.forEach(product => {
+
+            const productName =
+                product.dataset.name.toLowerCase();
+
+            const visible =
+                productName.includes(searchTerm);
+
+            product.style.display =
+                visible ? "block" : "none";
+
+        });
+
+    });
+
+
+    /* ----------------------------
+       FORM VALIDATION
+    ----------------------------- */
+
+    const form = document.getElementById("repairForm");
+    const formStatus = document.getElementById("formStatus");
+
+    function showError(input) {
+
+        input.classList.add("invalid");
+
+        const error =
+            input.parentElement.querySelector(".error");
+
+        if (error) {
+            error.style.display = "block";
+        }
+    }
+
+    function removeError(input) {
+
+        input.classList.remove("invalid");
+
+        const error =
+            input.parentElement.querySelector(".error");
+
+        if (error) {
+            error.style.display = "none";
+        }
+    }
+
+    function validEmail(email) {
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    }
+
+    function validPhone(phone) {
+
+        const cleaned =
+            phone.replace(/\s/g, "");
+
+        return /^[+]?[0-9]{9,15}$/.test(cleaned);
+
+    }
+
+
+    form.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name");
+
+        const phone =
+            document.getElementById("phone");
+
+        const email =
+            document.getElementById("email");
+
+        const appliance =
+            document.getElementById("appliance");
+
+        let valid = true;
+
+
+        if (name.value.trim().length < 2) {
+
+            showError(name);
+            valid = false;
+
+        } else {
+
+            removeError(name);
+
+        }
+
+
+        if (!validPhone(phone.value)) {
+
+            showError(phone);
+            valid = false;
+
+        } else {
+
+            removeError(phone);
+
+        }
+
+
+        if (!validEmail(email.value)) {
+
+            showError(email);
+            valid = false;
+
+        } else {
+
+            removeError(email);
+
+        }
+
+
+        if (!appliance.value) {
+
+            showError(appliance);
+            valid = false;
+
+        } else {
+
+            removeError(appliance);
+
+        }
+
+
+        if (valid) {
+
+            formStatus.style.display = "block";
+
+            form.reset();
+
+            formStatus.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+
+            setTimeout(() => {
+                formStatus.style.display = "none";
+            }, 5000);
+
+        }
+
+    });
+
+
+    /* ----------------------------
+       REMOVE ERRORS WHILE TYPING
+    ----------------------------- */
+
+    document
+        .querySelectorAll(
+            "#repairForm input, #repairForm select"
+        )
+        .forEach(field => {
+
+            field.addEventListener("input", () => {
+                removeError(field);
+            });
+
+            field.addEventListener("change", () => {
+                removeError(field);
+            });
+
+        });
+
+
+    /* ----------------------------
+       FOOTER YEAR
+    ----------------------------- */
+
+    document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
