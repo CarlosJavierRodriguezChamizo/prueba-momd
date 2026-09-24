@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navacerrada Ski Rental | Alquiler de esquí y snowboard</title>
+  <meta name="description" content="Alquiler de esquí y snowboard en Navacerrada. Reserva online tu equipo, recógelo junto a pistas y disfruta de la nieve sin complicaciones." />
+  <style>
+    :root{
+      --navy:#0d1b2a;
+      --blue:#1b5fa7;
+      --sky:#dff3ff;
+      --ice:#f6fbff;
+      --white:#ffffff;
+      --text:#203040;
+      --muted:#66788a;
+      --accent:#ffb703;
+      --success:#2a9d8f;
+      --danger:#d64d4d;
+      --shadow:0 14px 35px rgba(13,27,42,.14);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f7fbff 0%,#ffffff 55%,#eef8ff 100%);
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input,select{font:inherit}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(1180px, calc(100% - 36px));
+      margin-inline:auto;
+    }
+
+    .topbar{
+      background:var(--navy);
+      color:#dce9f5;
+      font-size:.92rem;
+      padding:8px 0;
+    }
+
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(27,95,167,.08);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:76px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      color:var(--navy);
+      letter-spacing:-.02em;
+    }
+
+    .brand-mark{
+      width:42px;height:42px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue),#56b7e8);
+      color:white;border-radius:14px;
+      box-shadow:var(--shadow);
+      font-size:1.25rem;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      color:#40566b;
+      font-weight:650;
+    }
+
+    .nav-cta,.btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:none;
+      border-radius:999px;
+      padding:13px 20px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .nav-cta,.btn-primary{
+      background:var(--blue);
+      color:white;
+      box-shadow:0 10px 24px rgba(27,95,167,.22);
+    }
+
+    .btn-primary:hover,.nav-cta:hover{transform:translateY(-2px);background:#154f8d}
+    .btn-secondary{
+      background:white;
+      color:var(--navy);
+      border:1px solid #dbe7f0;
+    }
+    .btn-secondary:hover{transform:translateY(-2px);border-color:#b8cddd}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:76px 0 62px;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(86,183,232,.25), transparent 28%),
+        linear-gradient(135deg,#f5fbff 0%,#e6f5ff 55%,#ffffff 100%);
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:auto -10% -100px 40%;
+      height:240px;
+      background:linear-gradient(180deg,#d4ecfb,#fff);
+      transform:skewY(-5deg);
+      opacity:.75;
+    }
+
+    .hero-grid{
+      position:relative;z-index:1;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:48px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#e8f5ff;
+      color:var(--blue);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.9rem;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.6rem,6vw,5.5rem);
+      line-height:.95;
+      margin:0 0 22px;
+      color:var(--navy);
+      letter-spacing:-.055em;
+    }
+
+    .hero p{
+      font-size:1.15rem;
+      line-height:1.7;
+      color:#52677b;
+      max-width:680px;
+      margin:0 0 30px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:28px;
+    }
+
+    .trust{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px 22px;
+      color:#516679;
+      font-size:.94rem;
+      font-weight:650;
+    }
+
+    .trust span:before{
+      content:"✓";
+      color:var(--success);
+      margin-right:7px;
+      font-weight:900;
+    }
+
+    .booking-card{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:28px;
+      box-shadow:0 30px 80px rgba(25,69,106,.18);
+      padding:26px;
+    }
+
+    .booking-card h2{
+      margin:0 0 8px;
+      color:var(--navy);
+      font-size:1.5rem;
+    }
+
+    .booking-card > p{
+      margin:0 0 20px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .field{display:flex;flex-direction:column;gap:7px}
+    .field.full{grid-column:1/-1}
+    label{font-size:.88rem;font-weight:800;color:#41566b}
+    input,select{
+      border:1px solid #d7e4ee;
+      border-radius:14px;
+      padding:13px 14px;
+      color:var(--navy);
+      background:#fff;
+      outline:none;
+    }
+    input:focus,select:focus{
+      border-color:#74b9e8;
+      box-shadow:0 0 0 4px rgba(27,95,167,.08);
+    }
+
+    .quote{
+      margin-top:18px;
+      border-top:1px solid #e6eef4;
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:20px;
+    }
+    .quote small{display:block;color:var(--muted);margin-bottom:4px}
+    .price{font-size:2rem;font-weight:900;color:var(--navy)}
+    .price span{font-size:.9rem;font-weight:700;color:var(--muted)}
+
+    section{padding:82px 0}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:26px;
+      align-items:end;
+      margin-bottom:32px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:clamp(2rem,4vw,3.3rem);
+      color:var(--navy);
+      letter-spacing:-.045em;
+    }
+    .section-head p{
+      max-width:590px;
+      color:var(--muted);
+      line-height:1.7;
+      margin:0;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid #e4edf4;
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:0 12px 34px rgba(13,27,42,.07);
+    }
+    .card-icon{
+      width:50px;height:50px;
+      border-radius:16px;
+      display:grid;place-items:center;
+      background:#eaf6ff;
+      font-size:1.5rem;
+      margin-bottom:18px;
+    }
+    .card h3{margin:0 0 10px;color:var(--navy)}
+    .card p{margin:0;color:var(--muted);line-height:1.65}
+
+    .equipment{
+      background:var(--navy);
+      color:white;
+      position:relative;
+      overflow:hidden;
+    }
+    .equipment .section-head h2{color:white}
+    .equipment .section-head p{color:#b8c8d8}
+    .product{
+      background:#12273a;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:24px;
+    }
+    .product .visual{
+      height:160px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#dff3ff,#8ac9ee);
+      display:grid;
+      place-items:center;
+      color:#12304a;
+      font-size:4rem;
+      margin-bottom:20px;
+    }
+    .product h3{margin:0 0 8px}
+    .product p{margin:0 0 16px;color:#b8c8d8;line-height:1.55}
+    .product .tag{
+      display:inline-block;
+      background:rgba(255,183,3,.14);
+      color:#ffd469;
+      border:1px solid rgba(255,183,3,.22);
+      padding:6px 9px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .step{
+      position:relative;
+      padding:22px 18px 10px;
+    }
+    .step-num{
+      width:44px;height:44px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--accent);
+      color:var(--navy);
+      font-weight:900;
+      margin-bottom:16px;
+    }
+    .step h3{margin:0 0 8px;color:var(--navy)}
+    .step p{margin:0;color:var(--muted);line-height:1.6}
+
+    .cta{
+      padding-top:28px;
+    }
+    .cta-box{
+      background:linear-gradient(135deg,#1b5fa7,#0d1b2a);
+      color:#fff;
+      border-radius:30px;
+      padding:42px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:30px;
+      box-shadow:var(--shadow);
+    }
+    .cta-box h2{margin:0 0 12px;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.04em}
+    .cta-box p{margin:0;color:#c7d7e5;line-height:1.6;max-width:650px}
+    .cta-box .btn{background:white;color:var(--navy);min-width:190px}
+
+    footer{
+      padding:40px 0 46px;
+      color:#688095;
+      font-size:.92rem;
+    }
+    .footer-grid{
+      border-top:1px solid #dde9f1;
+      padding-top:26px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .notice{
+      display:none;
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:.9rem;
+      font-weight:750;
+    }
+    .notice.ok{display:block;background:#e7f6f2;color:#1f7064}
+    .notice.error{display:block;background:#fdeaea;color:#9b3434}
+
+    .mobile-toggle{display:none}
+
+    @media (max-width: 920px){
+      .hero-grid,.cards{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .nav-links{display:none}
+      .mobile-toggle{display:inline-flex}
+      .hero{padding-top:46px}
+      .booking-card{max-width:680px}
+      .section-head{align-items:start;flex-direction:column}
+      .cta-box{flex-direction:column;align-items:flex-start}
+    }
+
+    @media (max-width: 620px){
+      .topbar .container{justify-content:center}
+      .topbar .container span:last-child{display:none}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .quote{align-items:flex-start;flex-direction:column}
+      .steps{grid-template-columns:1fr}
+      h1{font-size:3.25rem}
+      .container{width:min(100% - 24px,1180px)}
+      section{padding:62px 0}
+      .cta-box{padding:30px 24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span>🎿 Material revisado a diario · Recogida rápida en Navacerrada</span>
+      <span>☎ 91 000 00 00</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#">
+          <span class="brand-mark">⛷</span>
+          <span>Navacerrada Ski Rental</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#equipos">Equipos</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#ventajas">Ventajas</a>
+          <a class="nav-cta" href="#reserva">Reservar equipo</a>
+        </div>
+
+        <a class="nav-cta mobile-toggle" href="#reserva">Reservar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="reserva">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">❄️ Esquía en la Sierra de Madrid</span>
+          <h1>Tu equipo listo antes de llegar a la nieve.</h1>
+          <p>
+            Alquila esquís, snowboard, botas y casco en Navacerrada con reserva online.
+            Material preparado según tu nivel para que pierdas menos tiempo y disfrutes más de la montaña.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#reserva">Consultar disponibilidad</a>
+            <a class="btn btn-secondary" href="#equipos">Ver equipos</a>
+          </div>
+
+          <div class="trust">
+            <span>Reserva en menos de 2 minutos</span>
+            <span>Material para adultos y niños</span>
+            <span>Cancelación flexible</span>
+          </div>
+        </div>
+
+        <div class="booking-card">
+          <h2>Calcula tu alquiler</h2>
+          <p>Selecciona fechas y equipo. El precio se actualiza automáticamente.</p>
+
+          <form id="bookingForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="startDate">Fecha de recogida</label>
+                <input type="date" id="startDate" required />
+              </div>
+
+              <div class="field">
+                <label for="endDate">Fecha de devolución</label>
+                <input type="date" id="endDate" required />
+              </div>
+
+              <div class="field">
+                <label for="equipmentType">Equipo</label>
+                <select id="equipmentType">
+                  <option value="ski">Esquí completo</option>
+                  <option value="snow">Snowboard completo</option>
+                  <option value="kids">Equipo infantil</option>
+                  <option value="premium">Esquí premium</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="people">Personas</label>
+                <select id="people">
+                  <option value="1">1 persona</option>
+                  <option value="2">2 personas</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                  <option value="5">5 personas</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="level">Nivel</label>
+                <select id="level">
+                  <option>Principiante</option>
+                  <option>Intermedio</option>
+                  <option>Avanzado</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="quote">
+              <div>
+                <small>Precio estimado</small>
+                <div class="price"><span id="priceValue">29 €</span> <span>/ total</span></div>
+              </div>
+              <button class="btn btn-primary" type="submit">Reservar ahora</button>
+            </div>
+
+            <div id="formNotice" class="notice"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="ventajas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Por qué alquilar aquí</span>
+            <h2>Menos colas. Más pistas.</h2>
+          </div>
+          <p>
+            Preparamos cada reserva con antelación para que llegues, pruebes el material
+            y puedas empezar tu jornada de nieve cuanto antes.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🛠️</div>
+            <h3>Material ajustado</h3>
+            <p>Configuramos esquís, botas y fijaciones según altura, peso, talla y nivel de experiencia.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Recogida rápida</h3>
+            <p>Tu equipo queda preparado antes de tu llegada para evitar esperas en los días de mayor afluencia.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">👨‍👩‍👧</div>
+            <h3>Adultos y niños</h3>
+            <p>Disponemos de tallas y equipos para familias, grupos, principiantes y esquiadores experimentados.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="equipment" id="equipos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Equipamiento</span>
+            <h2>Elige el material que encaja contigo.</h2>
+          </div>
+          <p>
+            Opciones para aprender, progresar o disfrutar de un equipo de gama superior durante tu día en la estación.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="product">
+            <div class="visual">🎿</div>
+            <span class="tag">Desde 29 €/día</span>
+            <h3>Esquí completo</h3>
+            <p>Esquís, botas y bastones. Ideal para niveles principiante e intermedio.</p>
+          </article>
+
+          <article class="product">
+            <div class="visual">🏂</div>
+            <span class="tag">Desde 32 €/día</span>
+            <h3>Snowboard completo</h3>
+            <p>Tabla y botas preparadas según tu talla y experiencia sobre la nieve.</p>
+          </article>
+
+          <article class="product">
+            <div class="visual">⛷️</div>
+            <span class="tag">Desde 39 €/día</span>
+            <h3>Esquí premium</h3>
+            <p>Material de gama superior para quienes buscan mayor precisión y mejores sensaciones.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Proceso sencillo</span>
+            <h2>Reserva hoy. Esquía mañana.</h2>
+          </div>
+          <p>Un proceso pensado para que tengas el material preparado antes incluso de llegar a Navacerrada.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Elige tus fechas</h3>
+            <p>Indica cuándo quieres recoger y devolver el equipo.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Selecciona equipo</h3>
+            <p>Escoge esquí, snowboard o una opción premium.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Lo preparamos</h3>
+            <p>Ajustamos el material a tu nivel y características.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Recoge y disfruta</h3>
+            <p>Solo tienes que probar el ajuste y salir hacia pistas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>¿Vienes este fin de semana?</h2>
+            <p>Reserva con antelación y evita quedarte sin talla o sin el tipo de material que necesitas.</p>
+          </div>
+          <a class="btn" href="#reserva">Comprobar disponibilidad</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><strong>Navacerrada Ski Rental</strong><br>Alquiler de esquí y snowboard en la Sierra de Madrid.</div>
+      <div>© <span id="year"></span> · Aviso legal · Privacidad · Cookies</div>
+    </div>
+  </footer>
+
+  <script>
+    const prices = {
+      ski: 29,
+      snow: 32,
+      kids: 21,
+      premium: 39
+    };
+
+    const startDate = document.getElementById('startDate');
+    const endDate = document.getElementById('endDate');
+    const equipmentType = document.getElementById('equipmentType');
+    const people = document.getElementById('people');
+    const priceValue = document.getElementById('priceValue');
+    const form = document.getElementById('bookingForm');
+    const formNotice = document.getElementById('formNotice');
+
+    const today = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const formatDateInput = date => `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+
+    startDate.min = formatDateInput(today);
+    endDate.min = formatDateInput(today);
+
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    startDate.value = formatDateInput(today);
+    endDate.value = formatDateInput(tomorrow);
+
+    function getDays(){
+      const start = new Date(startDate.value);
+      const end = new Date(endDate.value);
+      const ms = end - start;
+      return Math.max(1, Math.ceil(ms / (1000*60*60*24)) || 1);
+    }
+
+    function updateEndMin(){
+      endDate.min = startDate.value;
+      if(endDate.value < startDate.value){
+        endDate.value = startDate.value;
+      }
+    }
+
+    function updatePrice(){
+      updateEndMin();
+      const days = getDays();
+      const unit = prices[equipmentType.value];
+      const total = unit * Number(people.value) * days;
+      priceValue.textContent = `${total} €`;
+    }
+
+    [startDate,endDate,equipmentType,people].forEach(el => {
+      el.addEventListener('change', updatePrice);
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const start = new Date(startDate.value);
+      const end = new Date(endDate.value);
+
+      if(!startDate.value || !endDate.value){
+        formNotice.className = 'notice error';
+        formNotice.textContent = 'Selecciona las fechas de recogida y devolución.';
+        return;
+      }
+
+      if(end < start){
+        formNotice.className = 'notice error';
+        formNotice.textContent = 'La fecha de devolución no puede ser anterior a la de recogida.';
+        return;
+      }
+
+      formNotice.className = 'notice ok';
+      formNotice.textContent = 'Solicitud preparada. En una web real, aquí conectaríamos el formulario con el sistema de reservas o pago.';
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    updatePrice();
+  </script>
+</body>
+</html>
